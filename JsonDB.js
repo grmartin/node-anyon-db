@@ -9,6 +9,8 @@
     var mkdirp = require('mkdirp');
     var path = require('path');
 
+    var defaultIzer = {to:JSON.stringify, from:JSON.parse, ext:'json'};
+
     /**
      * Create the JSON database
      * @param filename where to save the data base
@@ -17,12 +19,13 @@
      * @returns {JsonDB}
      * @constructor
      */
-    var JsonDB = function (filename, saveOnPush, humanReadable) {
+    var JsonDB = function (filename, saveOnPush, humanReadable, izer) {
 
+        this.izer = izer || defaultIzer;
         this.filename = filename;
 
-        if (!JsonUtils.strEndWith(filename, ".json")) {
-            this.filename += ".json";
+        if (!JsonUtils.strEndWith(filename, "."+this.izer.ext)) {
+            this.filename += "."+this.izer.ext;
         }
         var self = this;
         this.loaded = false;
@@ -212,7 +215,7 @@
         }
         try {
             var data = FS.readFileSync(this.filename, 'utf8');
-            this.data = JSON.parse(data);
+            this.data = this.izer.from(data);
             this.loaded = true;
         } catch (err) {
             var error = new DatabaseError("Can't Load Database", 1, err);
@@ -233,10 +236,10 @@
         var data = "";
         try {
             if (this.humanReadable) {
-                data = JSON.stringify(this.data, null, 4);
+                data = this.izer.to(this.data, null, 4);
             }
             else {
-                data = JSON.stringify(this.data);
+                data = this.izer.to(this.data);
             }
             FS.writeFileSync(this.filename, data, 'utf8');
         } catch (err) {

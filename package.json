@@ -1,26 +1,30 @@
 {
-    "name": "node-json-db",
+    "name": "node-anyon-db",
     "version": "0.7.3",
-    "description": "Database using JSON file as storage for Node.JS",
+    "description": "Database using any simple object notation format file as storage for Node.JS",
     "main": "./JsonDB.js",
     "scripts": {
         "test": "mocha test/test.js"
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:Belphemur/node-json-db.git"
+        "url": "https://github.com/grmartin/node-anyon-db.git"
     },
     "keywords": [
         "database",
         "json",
         "db"
     ],
-    "author": "Antoine Aflalo <antoineaf+npm@admincmd.com>",
+    "author": "Glenn R. Martin <grmartin@programmer.net>",
     "license": "MIT",
+    "contributors": [
+        {"name":"Glenn R. Martin", "email":"grmartin@programmer.net", "url":"https://github.com/grmartin/node-anyon-db", "contribution":"Modder and current maintainer."},
+        {"name":"Antoine Aflalo", "email":"antoineaf+npm@admincmd.com", "url":"https://github.com/Belphemur/node-json-db", "contribution":"Original author and creator of node-json-db."}
+    ],
     "bugs": {
-        "url": "https://github.com/Belphemur/node-json-db/issues"
+        "url": "https://github.com/grmartin/node-anyon-db/issues"
     },
-    "homepage": "https://github.com/Belphemur/node-json-db",
+    "homepage": "https://github.com/grmartin/node-anyon-db/",
     "dependencies": {
         "mkdirp": "0.5.x"
     },
